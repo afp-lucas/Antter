@@ -1,25 +1,23 @@
-; Hello World - Escreve mensagem armazenada na memoria na tela
-
 
 ; ------- TABELA DE CORES -------
 ; adicione ao caracter para Selecionar a cor correspondente
 
-; 0 branco							0000 0000
-; 256 marrom						0001 0000
-; 512 verde							0010 0000
-; 768 oliva							0011 0000
-; 1024 azul marinho					0100 0000
-; 1280 roxo							0101 0000
-; 1536 teal							0110 0000
-; 1792 prata						0111 0000
-; 2048 cinza						1000 0000
-; 2304 vermelho						1001 0000
-; 2560 lima							1010 0000
-; 2816 amarelo						1011 0000
-; 3072 azul							1100 0000
-; 3328 rosa							1101 0000
-; 3584 aqua							1110 0000
-; 3840 branco						1111 0000
+; 0 branco              0000 0000
+; 256 marrom            0001 0000
+; 512 verde             0010 0000
+; 768 oliva             0011 0000
+; 1024 azul marinho         0100 0000
+; 1280 roxo             0101 0000
+; 1536 teal             0110 0000
+; 1792 prata            0111 0000
+; 2048 cinza            1000 0000
+; 2304 vermelho           1001 0000
+; 2560 lima             1010 0000
+; 2816 amarelo            1011 0000
+; 3072 azul             1100 0000
+; 3328 rosa             1101 0000
+; 3584 aqua             1110 0000
+; 3840 branco           1111 0000
 
 
 
@@ -31,7 +29,10 @@ posFormigaAnteriorC: var #1
 posFormigaB: var #1
 posFormigaAnteriorB: var #1
 
+posCarro1: var #1
+posCarro1_Anterior: var #1
 
+aux: var #1
 ;---- Inicio do Programa Principal -----
 
 main:
@@ -46,18 +47,34 @@ main:
   store posFormigaC, r0
   store posFormigaAnteriorC, r0
   
+  loadn r0, #480
+  store posCarro1, r0
+  store posCarro1_Anterior, r0
+  
+  loadn r0, #29
+  store aux, r0
+  
   loop:
     call MoveFormiga
+    call Move_Carro1
+    load r0, posFormigaC
+    load r1, posCarro1
+    cmp r1, r0
+    jeq Fim
     call Delay
     jmp loop
-
-
-halt
-	
+    
+Fim:
+  halt
+  
 ;---- Fim do Programa Principal -----
-	
-;---- Inicio das Subrotinas -----
-	
+
+
+;********************************************************
+;                  Inicio das Subrotinas
+;********************************************************
+
+;---- Formigas-----
 MoveFormiga:
   push r1
   push r2
@@ -66,7 +83,9 @@ MoveFormiga:
   load r1, posFormigaC
   load r2, posFormigaB
   
+  call Formiga_Apaga
   call Formiga_Desenha
+  
   
   pop r1
   pop r2
@@ -142,6 +161,11 @@ MoveFormiga_RecalculaPos_W:
 
   sub r0, r0, r1
   sub r4, r4, r1
+  
+  load r1, aux
+  dec r1
+  store aux, r1
+  
   jmp MoveFormiga_Fim
 
 MoveFormiga_RecalculaPos_S:
@@ -152,19 +176,64 @@ MoveFormiga_RecalculaPos_S:
   loadn r1, #40
   add r0, r0, r1
   add r4, r4, r1
+  
+  load r1, aux
+  inc r1
+  store aux, r1
+  
   jmp MoveFormiga_Fim
   
 Formiga_Desenha:
   push r3
+  push r4
+  
+  loadn r4, #256
   
   loadn r3, #8
+  add r3, r3, r4
   outchar r3, r1
-  loadn r3, #9
-  outchar r3, r2
+  store posFormigaAnteriorC, r1
   
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
   pop r3
   rts
+
+Formiga_Apaga:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
   
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+;---- Delay -----
+
 Delay:
   push r0
   push r1
@@ -185,7 +254,82 @@ Delay:
 
   rts
   
-  ;---- Tela Fundo -----
+;---- Carros -----
+Move_Carro1:
+
+  call Apaga_Carro
+  call Desenha_Carro
+  call Atualisa_Carro_Direita
+  call Delay
+
+  rts
+
+Atualisa_Carro_Direita:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro1
+  inc r0
+  loadn r1, #40
+  loadn r2, #520
+  cmp r0, r2
+  jeq Carro_Fim
+  store posCarro1, r0
+  jmp Atuliza_Fim
+  
+  Carro_Fim:
+    loadn r2, #480
+    store posCarro1, r2
+    jmp Atuliza_Fim
+  
+  Atuliza_Fim:
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Desenha_Carro:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro1
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro1_Anterior, r0
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro1_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+  
+  
+;---- Tela Fundo -----
 
   ;Linha 0
   static Fundo + #0, #2577
