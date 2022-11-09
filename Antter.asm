@@ -44,7 +44,61 @@ posCarro31_Anterior: var #1
 posCarro32: var #1
 posCarro32_Anterior: var #1
 
-aux: var #1
+posCarro41: var #1
+posCarro41_Anterior: var #1
+posCarro42: var #1
+posCarro42_Anterior: var #1
+
+posCarro51: var #1
+posCarro51_Anterior: var #1
+posCarro52: var #1
+posCarro52_Anterior: var #1
+
+posCarro61: var #1
+posCarro61_Anterior: var #1
+posCarro62: var #1
+posCarro62_Anterior: var #1
+
+posCarro71: var #1
+posCarro71_Anterior: var #1
+posCarro72: var #1
+posCarro72_Anterior: var #1
+
+posCarro81: var #1
+posCarro81_Anterior: var #1
+posCarro82: var #1
+posCarro82_Anterior: var #1
+
+posMadeira11: var #1
+posMadeira11_Anterior: var #1
+posMadeira12: var #1
+posMadeira12_Anterior: var #1
+
+posMadeira21: var #1
+posMadeira21_Anterior: var #1
+posMadeira22: var #1
+posMadeira22_Anterior: var #1
+
+posMadeira31: var #1
+posMadeira31_Anterior: var #1
+posMadeira32: var #1
+posMadeira32_Anterior: var #1
+
+posMadeira41: var #1
+posMadeira41_Anterior: var #1
+posMadeira42: var #1
+posMadeira42_Anterior: var #1
+
+posMadeira51: var #1
+posMadeira51_Anterior: var #1
+posMadeira52: var #1
+posMadeira52_Anterior: var #1
+
+posMadeira61: var #1
+posMadeira61_Anterior: var #1
+posMadeira62: var #1
+posMadeira62_Anterior: var #1
+
 ;---- Inicio do Programa Principal -----
 
 main:
@@ -83,19 +137,146 @@ main:
   store posCarro32, r0
   store posCarro32_Anterior, r0
   
+  loadn r0, #737
+  store posCarro41, r0
+  store posCarro41_Anterior, r0
+  
+  loadn r0, #777
+  store posCarro42, r0
+  store posCarro42_Anterior, r0
+  
+  loadn r0, #832
+  store posCarro51, r0
+  store posCarro51_Anterior, r0
+  
+  loadn r0, #872
+  store posCarro52, r0
+  store posCarro52_Anterior, r0
+  
+  loadn r0, #891
+  store posCarro61, r0
+  store posCarro61_Anterior, r0
+  
+  loadn r0, #931
+  store posCarro62, r0
+  store posCarro62_Anterior, r0
+  
+  loadn r0, #991
+  store posCarro71, r0
+  store posCarro71_Anterior, r0
+  
+  loadn r0, #1031
+  store posCarro72, r0
+  store posCarro72_Anterior, r0
+  
+  loadn r0, #1049
+  store posCarro81, r0
+  store posCarro81_Anterior, r0
+  
+  loadn r0, #1089
+  store posCarro82, r0
+  store posCarro82_Anterior, r0
+  
+  loadn r0, #320
+  store posMadeira11, r0
+  store posMadeira11_Anterior, r0
+  
+  loadn r0, #360
+  store posMadeira12, r0
+  store posMadeira12_Anterior, r0
+  
+  loadn r0, #337
+  store posMadeira21, r0
+  store posMadeira21_Anterior, r0
+  
+  loadn r0, #377
+  store posMadeira22, r0
+  store posMadeira22_Anterior, r0
+  
+  loadn r0, #347
+  store posMadeira31, r0
+  store posMadeira31_Anterior, r0
+  
+  loadn r0, #387
+  store posMadeira32, r0
+  store posMadeira32_Anterior, r0
+  
+  loadn r0, #267
+  store posMadeira41, r0
+  store posMadeira41_Anterior, r0
+  
+  loadn r0, #307
+  store posMadeira42, r0
+  store posMadeira42_Anterior, r0
+  
+  loadn r0, #162
+  store posMadeira51, r0
+  store posMadeira51_Anterior, r0
+  
+  loadn r0, #202
+  store posMadeira52, r0
+  store posMadeira52_Anterior, r0
+  
+  loadn r0, #185
+  store posMadeira61, r0
+  store posMadeira61_Anterior, r0
+  
+  loadn r0, #225
+  store posMadeira62, r0
+  store posMadeira62_Anterior, r0
+  
+  
   loop:
     call MoveFormiga
     call Move_Carro1
     call Move_Carro2
     call Move_Carro3
+    call Move_Carro4
+    call Move_Carro5
+    call Move_Carro6
+    call Move_Carro7
+    call Move_Carro8
+    call Move_Madeira1
+    call Move_Madeira2
+    call Move_Madeira3
+    call Move_Madeira4
+    call Move_Madeira5
+    call Move_Madeira6
+    
     load r0, posFormigaC
+    
     load r1, posCarro11
     cmp r1, r0
+    jeq Fim
+    
     load r1, posCarro21
     cmp r1, r0
+    jeq Fim
+    
     load r1, posCarro31
     cmp r1, r0
     jeq Fim
+    
+    load r1, posCarro41
+    cmp r1, r0
+    jeq Fim
+    
+    load r1, posCarro51
+    cmp r1, r0
+    jeq Fim
+    
+    load r1, posCarro61
+    cmp r1, r0
+    jeq Fim
+    
+    load r1, posCarro71
+    cmp r1, r0
+    jeq Fim
+    
+    load r1, posCarro81
+    cmp r1, r0
+    jeq Fim
+    
     call Delay
     jmp loop
     
@@ -110,6 +291,7 @@ main:
 ;********************************************************
 
 ;---- Formigas-----
+
 MoveFormiga:
   push r1
   push r2
@@ -551,6 +733,1738 @@ Apaga_Carro3:
   pop r1
   pop r0
   rts
+  
+  
+  
+  Move_Carro4:
+
+  call Apaga_Carro4
+  call Desenha_Carro4
+  call Atualisa_Carro_Direita4
+
+  rts
+
+Atualisa_Carro_Direita4:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro41
+  inc r0
+  ;loadn r1, #40
+  loadn r2, #759
+  cmp r0, r2
+  jeq Carro_Fim4
+  
+  store posCarro41, r0
+  load r0, posCarro42
+  inc r0
+  store posCarro42, r0
+  jmp Atuliza_Fim4
+  
+  Carro_Fim4:
+    loadn r2, #720
+    store posCarro41, r2
+    loadn r2, #760
+    store posCarro42, r2
+    jmp Atuliza_Fim4
+  
+  Atuliza_Fim4:
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Desenha_Carro4:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro41
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro41_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro42
+  outchar r1, r0
+  store posCarro42_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro4:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro41_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro42_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Move_Carro5:
+ call Apaga_Carro5
+ call Desenha_Carro5
+ call Atualisa_Carro_Esq5
+
+ rts
+
+Atualisa_Carro_Esq5:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro51
+  dec r0
+  ;loadn r1, #40
+  loadn r2, #800
+  cmp r0, r2
+  jeq Carro_Fim5
+  
+  store posCarro51, r0
+  load r0, posCarro52
+  dec r0
+  store posCarro52, r0
+  jmp Atuliza_Fim5
+  
+  Carro_Fim5:
+    loadn r2, #839
+    store posCarro51, r2
+    loadn r2, #879
+    store posCarro52, r2
+    jmp Atuliza_Fim5
+  
+  Atuliza_Fim5:
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Desenha_Carro5:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro51
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro51_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro52
+  outchar r1, r0
+  store posCarro52_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro5:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro51_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro52_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+  
+  Move_Carro6:
+
+  call Apaga_Carro6
+  call Desenha_Carro6
+  call Atualisa_Carro_Direita6
+
+  rts
+
+Atualisa_Carro_Direita6:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro61
+  inc r0
+  ;loadn r1, #40
+  loadn r2, #919
+  cmp r0, r2
+  jeq Carro_Fim6
+  
+  store posCarro61, r0
+  load r0, posCarro62
+  inc r0
+  store posCarro62, r0
+  jmp Atuliza_Fim6
+  
+  Carro_Fim6:
+    loadn r2, #880
+    store posCarro61, r2
+    loadn r2, #920
+    store posCarro62, r2
+    jmp Atuliza_Fim6
+  
+  Atuliza_Fim6:
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Desenha_Carro6:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro61
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro61_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro62
+  outchar r1, r0
+  store posCarro62_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro6:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro61_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro62_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Move_Carro7:
+
+  call Apaga_Carro7
+  call Desenha_Carro7
+  call Atualisa_Carro_Direita7
+
+  rts
+
+Atualisa_Carro_Direita7:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro71
+  inc r0
+  ;loadn r1, #40
+  loadn r2, #999
+  cmp r0, r2
+  jeq Carro_Fim7
+  
+  store posCarro71, r0
+  load r0, posCarro72
+  inc r0
+  store posCarro72, r0
+  jmp Atuliza_Fim7
+  
+  Carro_Fim7:
+    loadn r2, #960
+    store posCarro71, r2
+    loadn r2, #1000
+    store posCarro72, r2
+    jmp Atuliza_Fim7
+  
+  Atuliza_Fim7:
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Desenha_Carro7:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro71
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro71_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro72
+  outchar r1, r0
+  store posCarro72_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro7:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro71_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro72_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Move_Carro8:
+ call Apaga_Carro8
+ call Desenha_Carro8
+ call Atualisa_Carro_Esq8
+
+ rts
+
+Atualisa_Carro_Esq8:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro81
+  dec r0
+  ;loadn r1, #40
+  loadn r2, #1040
+  cmp r0, r2
+  jeq Carro_Fim8
+  
+  store posCarro81, r0
+  load r0, posCarro82
+  dec r0
+  store posCarro82, r0
+  jmp Atuliza_Fim8
+  
+  Carro_Fim8:
+    loadn r2, #1079
+    store posCarro81, r2
+    loadn r2, #1119
+    store posCarro82, r2
+    jmp Atuliza_Fim8
+  
+  Atuliza_Fim8:
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Desenha_Carro8:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro81
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro81_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro82
+  outchar r1, r0
+  store posCarro82_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro8:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro81_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro82_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+;---- Maderas-----
+
+Move_Madeira1:
+  call Apaga_Madeira1
+  call Desenha_Madeira1
+  call Atualiza_Madeira1
+  
+  rts
+
+Desenha_Madeira1:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira11
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira1
+  
+  loadn r1, #15
+  loadn r2, #2816
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira11_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posMadeira12
+  outchar r1, r0
+  store posMadeira12_Anterior, r0
+  
+  Final_Desenha_Madeira1:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira1:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira11_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posMadeira12_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira1:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira11
+  cmp r0, r1
+  jne MoveMadeira_semFormiga1
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira1
+  
+  Fim_Atualiza_Madeira1:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga1:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira11
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq Madeira_Fim1
+  
+  store posMadeira11, r0
+  load r0, posMadeira12
+  inc r0
+  store posMadeira12, r0
+  jmp Atuliza_Fim_Madeira1
+  
+  Madeira_Fim1:
+    loadn r2, #320
+    store posMadeira11, r2
+    loadn r2, #360
+    store posMadeira12, r2
+    jmp Atuliza_Fim_Madeira1
+  
+  Atuliza_Fim_Madeira1:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira1
+
+Move_FormigaeMadeira1:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira11
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq MadeiraF_Fim1
+  
+  store posMadeira11, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira12
+  inc r0
+  store posMadeira12, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira1
+  call Desenha_Formiga_Madeira1
+  
+  jmp Atuliza_Fim_MadeiraF1
+  
+  MadeiraF_Fim1:
+    loadn r2, #320
+    store posMadeira11, r2
+    store posFormigaC, r2
+    
+    loadn r2, #360
+    store posMadeira12, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF1
+  
+  Atuliza_Fim_MadeiraF1:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira1
+
+Desenha_Formiga_Madeira1:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira1:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Move_Madeira2:
+  call Apaga_Madeira2
+  call Desenha_Madeira2
+  call Atualiza_Madeira2
+  
+  rts
+
+Desenha_Madeira2:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira21
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira2
+  
+  loadn r1, #15
+  loadn r2, #2816
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira21_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posMadeira22
+  outchar r1, r0
+  store posMadeira22_Anterior, r0
+  
+  Final_Desenha_Madeira2:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira2:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira21_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posMadeira22_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira2:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira21
+  cmp r0, r1
+  jne MoveMadeira_semFormiga2
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira2
+  
+  Fim_Atualiza_Madeira2:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga2:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira21
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq Madeira_Fim2
+  
+  store posMadeira21, r0
+  load r0, posMadeira22
+  inc r0
+  store posMadeira22, r0
+  jmp Atuliza_Fim_Madeira2
+  
+  Madeira_Fim2:
+    loadn r2, #320
+    store posMadeira21, r2
+    loadn r2, #360
+    store posMadeira22, r2
+    jmp Atuliza_Fim_Madeira2
+  
+  Atuliza_Fim_Madeira2:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira2
+
+Move_FormigaeMadeira2:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira21
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq MadeiraF_Fim2
+  
+  store posMadeira21, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira22
+  inc r0
+  store posMadeira22, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira2
+  call Desenha_Formiga_Madeira2
+  
+  jmp Atuliza_Fim_MadeiraF2
+  
+  MadeiraF_Fim2:
+    loadn r2, #320
+    store posMadeira21, r2
+    store posFormigaC, r2
+    
+    loadn r2, #360
+    store posMadeira22, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF2
+  
+  Atuliza_Fim_MadeiraF2:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira2
+
+Desenha_Formiga_Madeira2:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira2:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Move_Madeira3:
+  call Apaga_Madeira3
+  call Desenha_Madeira3
+  call Atualiza_Madeira3
+  
+  rts
+
+Desenha_Madeira3:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira31
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira3
+  
+  loadn r1, #15
+  loadn r2, #2816
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira31_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posMadeira32
+  outchar r1, r0
+  store posMadeira32_Anterior, r0
+  
+  Final_Desenha_Madeira3:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira3:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira31_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posMadeira32_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira3:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira31
+  cmp r0, r1
+  jne MoveMadeira_semFormiga3
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira3
+  
+  Fim_Atualiza_Madeira3:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga3:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira31
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq Madeira_Fim3
+  
+  store posMadeira31, r0
+  load r0, posMadeira32
+  inc r0
+  store posMadeira32, r0
+  jmp Atuliza_Fim_Madeira3
+  
+  Madeira_Fim3:
+    loadn r2, #320
+    store posMadeira31, r2
+    loadn r2, #360
+    store posMadeira32, r2
+    jmp Atuliza_Fim_Madeira3
+  
+  Atuliza_Fim_Madeira3:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira3
+
+Move_FormigaeMadeira3:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira31
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq MadeiraF_Fim3
+  
+  store posMadeira31, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira32
+  inc r0
+  store posMadeira32, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira3
+  call Desenha_Formiga_Madeira3
+  
+  jmp Atuliza_Fim_MadeiraF3
+  
+  MadeiraF_Fim3:
+    loadn r2, #320
+    store posMadeira31, r2
+    store posFormigaC, r2
+    
+    loadn r2, #360
+    store posMadeira32, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF3
+  
+  Atuliza_Fim_MadeiraF3:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira3
+
+Desenha_Formiga_Madeira3:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira3:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+  
+  Move_Madeira4:
+  call Apaga_Madeira4
+  call Desenha_Madeira4
+  call Atualiza_Madeira4
+  
+  rts
+
+Desenha_Madeira4:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira41
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira4
+  
+  loadn r1, #15
+  loadn r2, #2816
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira41_Anterior, r0
+  
+  ;parte de baixo de carro?
+  load r0, posMadeira42
+  outchar r1, r0
+  store posMadeira42_Anterior, r0
+  
+  Final_Desenha_Madeira4:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira4:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira41_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posMadeira42_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira4:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira41
+  cmp r0, r1
+  jne MoveMadeira_semFormiga4
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira4
+  
+  Fim_Atualiza_Madeira4:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga4:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira41
+  dec r0
+  loadn r2, #240
+  cmp r0, r2
+  jeq Madeira_Fim4
+  
+  store posMadeira41, r0
+  load r0, posMadeira42
+  dec r0
+  store posMadeira42, r0
+  jmp Atuliza_Fim_Madeira4
+  
+  Madeira_Fim4:
+    loadn r2, #279
+    store posMadeira41, r2
+    loadn r2, #319
+    store posMadeira42, r2
+    jmp Atuliza_Fim_Madeira4
+  
+  Atuliza_Fim_Madeira4:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira4
+
+Move_FormigaeMadeira4:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira41
+  dec r0
+  loadn r2, #240
+  cmp r0, r2
+  jeq MadeiraF_Fim4
+  
+  store posMadeira41, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira42
+  dec r0
+  store posMadeira42, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira4
+  call Desenha_Formiga_Madeira4
+  
+  jmp Atuliza_Fim_MadeiraF4
+  
+  MadeiraF_Fim4:
+    loadn r2, #279
+    store posMadeira41, r2
+    store posFormigaC, r2
+    
+    loadn r2, #319
+    store posMadeira42, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF3
+  
+  Atuliza_Fim_MadeiraF4:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira4
+
+Desenha_Formiga_Madeira4:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira4:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+  Move_Madeira5:
+  call Apaga_Madeira5
+  call Desenha_Madeira5
+  call Atualiza_Madeira5
+  
+  rts
+
+Desenha_Madeira5:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira51
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira5
+  
+  loadn r1, #15
+  loadn r2, #2816
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira51_Anterior, r0
+  
+  ;parte de baixo de carro, nem eh...
+  load r0, posMadeira52
+  outchar r1, r0
+  store posMadeira52_Anterior, r0
+  
+  Final_Desenha_Madeira5:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira5:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira51_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posMadeira52_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira5:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira51
+  cmp r0, r1
+  jne MoveMadeira_semFormiga5
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira5
+  
+  Fim_Atualiza_Madeira5:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga5:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira51
+  inc r0
+  loadn r2, #199
+  cmp r0, r2
+  jeq Madeira_Fim5
+  
+  store posMadeira51, r0
+  load r0, posMadeira52
+  inc r0
+  store posMadeira52, r0
+  jmp Atuliza_Fim_Madeira5
+  
+  Madeira_Fim5:
+    loadn r2, #160
+    store posMadeira51, r2
+    loadn r2, #200
+    store posMadeira52, r2
+    jmp Atuliza_Fim_Madeira5
+  
+  Atuliza_Fim_Madeira5:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira5
+
+Move_FormigaeMadeira5:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira51
+  inc r0
+  loadn r2, #199
+  cmp r0, r2
+  jeq MadeiraF_Fim5
+  
+  store posMadeira51, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira52
+  inc r0
+  store posMadeira52, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira5
+  call Desenha_Formiga_Madeira5
+  
+  jmp Atuliza_Fim_MadeiraF5
+  
+  MadeiraF_Fim5:
+    loadn r2, #160
+    store posMadeira51, r2
+    store posFormigaC, r2
+    
+    loadn r2, #200
+    store posMadeira52, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF5
+  
+  Atuliza_Fim_MadeiraF5:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira5
+
+Desenha_Formiga_Madeira5:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira5:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+  
+Move_Madeira6:
+  call Apaga_Madeira6
+  call Desenha_Madeira6
+  call Atualiza_Madeira6
+  
+  rts
+
+Desenha_Madeira6:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira61
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira6
+  
+  loadn r1, #15
+  loadn r2, #2816
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira61_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posMadeira62
+  outchar r1, r0
+  store posMadeira62_Anterior, r0
+  
+  Final_Desenha_Madeira6:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira6:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira61_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posMadeira62_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira6:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira61
+  cmp r0, r1
+  jne MoveMadeira_semFormiga6
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira6
+  
+  Fim_Atualiza_Madeira6:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga6:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira61
+  inc r0
+  loadn r2, #199
+  cmp r0, r2
+  jeq Madeira_Fim6
+  
+  store posMadeira61, r0
+  load r0, posMadeira62
+  inc r0
+  store posMadeira62, r0
+  jmp Atuliza_Fim_Madeira6
+  
+  Madeira_Fim6:
+    loadn r2, #160
+    store posMadeira61, r2
+    loadn r2, #200
+    store posMadeira62, r2
+    jmp Atuliza_Fim_Madeira6
+  
+  Atuliza_Fim_Madeira6:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira6
+
+Move_FormigaeMadeira6:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira61
+  inc r0
+  loadn r2, #199
+  cmp r0, r2
+  jeq MadeiraF_Fim6
+  
+  store posMadeira61, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira62
+  inc r0
+  store posMadeira62, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira6
+  call Desenha_Formiga_Madeira6
+  
+  jmp Atuliza_Fim_MadeiraF6
+  
+  MadeiraF_Fim6:
+    loadn r2, #160
+    store posMadeira61, r2
+    store posFormigaC, r2
+    
+    loadn r2, #200
+    store posMadeira62, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF6
+  
+  Atuliza_Fim_MadeiraF6:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira6
+
+Desenha_Formiga_Madeira6:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira6:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+
+
 ;---- Tela Fundo -----
 
   ;Linha 0
