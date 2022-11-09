@@ -1388,37 +1388,37 @@ Apaga_Carro:
   static Fundo + #1006, #2836
   static Fundo + #1007, #2836
   static Fundo + #1008, #2836
-  static Fundo + #1009, #2943
+  static Fundo + #1009, #2835
   static Fundo + #1010, #2836
   static Fundo + #1011, #2836
   static Fundo + #1012, #2836
   static Fundo + #1013, #2836
-  static Fundo + #1014, #2943
+  static Fundo + #1014, #2835
   static Fundo + #1015, #2836
   static Fundo + #1016, #2836
   static Fundo + #1017, #2836
   static Fundo + #1018, #2836
-  static Fundo + #1019, #2943
+  static Fundo + #1019, #2835
   static Fundo + #1020, #2836
   static Fundo + #1021, #2836
   static Fundo + #1022, #2836
   static Fundo + #1023, #2836
-  static Fundo + #1024, #2943
+  static Fundo + #1024, #2835
   static Fundo + #1025, #2836
   static Fundo + #1026, #2836
   static Fundo + #1027, #2836
   static Fundo + #1028, #2836
-  static Fundo + #1029, #2943
+  static Fundo + #1029, #2835
   static Fundo + #1030, #2836
   static Fundo + #1031, #2836
   static Fundo + #1032, #2836
   static Fundo + #1033, #2836
-  static Fundo + #1034, #2943
+  static Fundo + #1034, #2835
   static Fundo + #1035, #2836
   static Fundo + #1036, #2836
   static Fundo + #1037, #2836
   static Fundo + #1038, #2836
-  static Fundo + #1039, #2943
+  static Fundo + #1039, #2835
 
   ;Linha 26
   static Fundo + #1040, #2835
@@ -1430,37 +1430,37 @@ Apaga_Carro:
   static Fundo + #1046, #2835
   static Fundo + #1047, #2835
   static Fundo + #1048, #2835
-  static Fundo + #1049, #2943
+  static Fundo + #1049, #2835
   static Fundo + #1050, #2835
   static Fundo + #1051, #2835
   static Fundo + #1052, #2835
   static Fundo + #1053, #2835
-  static Fundo + #1054, #2943
+  static Fundo + #1054, #2835
   static Fundo + #1055, #2835
   static Fundo + #1056, #2835
   static Fundo + #1057, #2835
   static Fundo + #1058, #2835
-  static Fundo + #1059, #2943
+  static Fundo + #1059, #2835
   static Fundo + #1060, #2835
   static Fundo + #1061, #2835
   static Fundo + #1062, #2835
   static Fundo + #1063, #2835
-  static Fundo + #1064, #2943
+  static Fundo + #1064, #2835
   static Fundo + #1065, #2835
   static Fundo + #1066, #2835
   static Fundo + #1067, #2835
   static Fundo + #1068, #2835
-  static Fundo + #1069, #2943
+  static Fundo + #1069, #2835
   static Fundo + #1070, #2835
   static Fundo + #1071, #2835
   static Fundo + #1072, #2835
   static Fundo + #1073, #2835
-  static Fundo + #1074, #2943
+  static Fundo + #1074, #2835
   static Fundo + #1075, #2835
   static Fundo + #1076, #2835
   static Fundo + #1077, #2835
   static Fundo + #1078, #2835
-  static Fundo + #1079, #2943
+  static Fundo + #1079, #2835
 
   ;Linha 27
   static Fundo + #1080, #3856
