@@ -137,8 +137,6 @@ MoveFormiga_RecalculaPos_A:
   jeq MoveFormiga_Fim
 
   dec r0
-  dec r0
-  dec r4
   dec r4
   jmp MoveFormiga_Fim
   
