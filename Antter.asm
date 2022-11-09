@@ -29,8 +29,20 @@ posFormigaAnteriorC: var #1
 posFormigaB: var #1
 posFormigaAnteriorB: var #1
 
-posCarro1: var #1
-posCarro1_Anterior: var #1
+posCarro11: var #1
+posCarro11_Anterior: var #1
+posCarro12: var #1
+posCarro12_Anterior: var #1
+
+posCarro21: var #1
+posCarro21_Anterior: var #1
+posCarro22: var #1
+posCarro22_Anterior: var #1
+
+posCarro31: var #1
+posCarro31_Anterior: var #1
+posCarro32: var #1
+posCarro32_Anterior: var #1
 
 aux: var #1
 ;---- Inicio do Programa Principal -----
@@ -48,14 +60,40 @@ main:
   store posFormigaAnteriorC, r0
   
   loadn r0, #480
-  store posCarro1, r0
-  store posCarro1_Anterior, r0
+  store posCarro11, r0
+  store posCarro11_Anterior, r0
+  
+  loadn r0, #520
+  store posCarro12, r0
+  store posCarro12_Anterior, r0
+  
+  loadn r0, #599
+  store posCarro21, r0
+  store posCarro21_Anterior, r0
+  
+  loadn r0, #639
+  store posCarro22, r0
+  store posCarro22_Anterior, r0
+  
+  loadn r0, #666
+  store posCarro31, r0
+  store posCarro31_Anterior, r0
+  
+  loadn r0, #706
+  store posCarro32, r0
+  store posCarro32_Anterior, r0
   
   loop:
     call MoveFormiga
     call Move_Carro1
+    call Move_Carro2
+    call Move_Carro3
     load r0, posFormigaC
-    load r1, posCarro1
+    load r1, posCarro11
+    cmp r1, r0
+    load r1, posCarro21
+    cmp r1, r0
+    load r1, posCarro31
     cmp r1, r0
     jeq Fim
     call Delay
@@ -250,54 +288,65 @@ Delay:
 ;---- Carros -----
 Move_Carro1:
 
-  call Apaga_Carro
-  call Desenha_Carro
-  call Atualisa_Carro_Direita
-  call Delay
+  call Apaga_Carro1
+  call Desenha_Carro1
+  call Atualisa_Carro_Direita1
 
   rts
 
-Atualisa_Carro_Direita:
+Atualisa_Carro_Direita1:
   push r0
   push r1
   push r2
   
-  load r0, posCarro1
+  load r0, posCarro11
   inc r0
-  loadn r1, #40
+  ;loadn r1, #40
   loadn r2, #520
   cmp r0, r2
-  jeq Carro_Fim
-  store posCarro1, r0
-  jmp Atuliza_Fim
+  jeq Carro_Fim1
   
-  Carro_Fim:
+  store posCarro11, r0
+  load r0, posCarro12
+  inc r0
+  store posCarro12, r0
+  jmp Atuliza_Fim1
+  
+  Carro_Fim1:
     loadn r2, #480
-    store posCarro1, r2
-    jmp Atuliza_Fim
+    store posCarro11, r2
+    loadn r2, #520
+    store posCarro12, r2
+    jmp Atuliza_Fim1
   
-  Atuliza_Fim:
+  Atuliza_Fim1:
   pop r2
   pop r1
   pop r0
   rts
 
-Desenha_Carro:
+Desenha_Carro1:
   push r0
   push r1
   push r2
   
-  load r0, posCarro1
+  load r0, posCarro11
   loadn r1, #'x'
   outchar r1, r0
-  store posCarro1_Anterior, r0
+  store posCarro11_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro12
+  outchar r1, r0
+  store posCarro12_Anterior, r0
+  
   
   pop r2
   pop r1
   pop r0
   rts
 
-Apaga_Carro:
+Apaga_Carro1:
   push r0
   push r1
   push r2
@@ -307,7 +356,12 @@ Apaga_Carro:
   
   loadn r0, #Fundo
   
-  load r1, posCarro1_Anterior
+  load r1, posCarro11_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro12_Anterior
   add r2, r1, r0
   loadi r5, r2
   outchar r5, r1
@@ -321,7 +375,182 @@ Apaga_Carro:
   rts
 
   
+Move_Carro2:
+ call Apaga_Carro2
+ call Desenha_Carro2
+ call Atualisa_Carro_Esq2
+
+ rts
+
+Atualisa_Carro_Esq2:
+  push r0
+  push r1
+  push r2
   
+  load r0, posCarro21
+  dec r0
+  ;loadn r1, #40
+  loadn r2, #560
+  cmp r0, r2
+  jeq Carro_Fim2
+  
+  store posCarro21, r0
+  load r0, posCarro22
+  dec r0
+  store posCarro22, r0
+  jmp Atuliza_Fim2
+  
+  Carro_Fim2:
+    loadn r2, #599
+    store posCarro21, r2
+    loadn r2, #639
+    store posCarro22, r2
+    jmp Atuliza_Fim2
+  
+  Atuliza_Fim2:
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Desenha_Carro2:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro21
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro21_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro22
+  outchar r1, r0
+  store posCarro22_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro2:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro21_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro22_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+  
+  
+  
+Move_Carro3:
+ call Apaga_Carro3
+ call Desenha_Carro3
+ call Atualisa_Carro_Esq3
+
+ rts
+
+Atualisa_Carro_Esq3:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro31
+  dec r0
+  ;loadn r1, #40
+  loadn r2, #640
+  cmp r0, r2
+  jeq Carro_Fim3
+  
+  store posCarro31, r0
+  load r0, posCarro32
+  dec r0
+  store posCarro32, r0
+  jmp Atuliza_Fim3
+  
+  Carro_Fim3:
+    loadn r2, #679
+    store posCarro31, r2
+    loadn r2, #719
+    store posCarro32, r2
+    jmp Atuliza_Fim3
+  
+  Atuliza_Fim3:
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Desenha_Carro3:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posCarro31
+  loadn r1, #'x'
+  outchar r1, r0
+  store posCarro31_Anterior, r0
+  
+  ;parte de baixo de carro
+  load r0, posCarro32
+  outchar r1, r0
+  store posCarro32_Anterior, r0
+  
+  
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Carro3:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posCarro31_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posCarro32_Anterior
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
 ;---- Tela Fundo -----
 
   ;Linha 0
