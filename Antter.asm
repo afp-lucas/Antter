@@ -137,6 +137,8 @@ MoveFormiga_RecalculaPos_A:
   jeq MoveFormiga_Fim
 
   dec r0
+  dec r0
+  dec r4
   dec r4
   jmp MoveFormiga_Fim
   
@@ -158,10 +160,8 @@ MoveFormiga_RecalculaPos_W:
 
   sub r0, r0, r1
   sub r4, r4, r1
-  
-  load r1, aux
-  dec r1
-  store aux, r1
+  sub r0, r0, r1
+  sub r4, r4, r1
   
   jmp MoveFormiga_Fim
 
@@ -173,10 +173,8 @@ MoveFormiga_RecalculaPos_S:
   loadn r1, #40
   add r0, r0, r1
   add r4, r4, r1
-  
-  load r1, aux
-  inc r1
-  store aux, r1
+  add r0, r0, r1
+  add r4, r4, r1
   
   jmp MoveFormiga_Fim
   
