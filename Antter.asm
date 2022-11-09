@@ -19,7 +19,7 @@
 ; 3584 aqua             1110 0000
 ; 3840 branco           1111 0000
 
-
+;ANTTER
 
 jmp main
 
@@ -51,9 +51,6 @@ main:
   store posCarro1, r0
   store posCarro1_Anterior, r0
   
-  loadn r0, #29
-  store aux, r0
-  
   loop:
     call MoveFormiga
     call Move_Carro1
@@ -64,8 +61,8 @@ main:
     call Delay
     jmp loop
     
-Fim:
-  halt
+  Fim:
+    halt
   
 ;---- Fim do Programa Principal -----
 
