@@ -277,6 +277,63 @@ main:
     cmp r1, r0
     jeq Fim
     
+    loadn r1, #20
+    cmp r1, r0
+    jeq Fim
+    
+    ;;;;;;;
+    loadn r2, #40
+    div r1, r0, r2 ;numero de linha da formiga
+    
+    loadn r2, #8 ;linha da madeira
+    cmp r1, r2
+    jeq Morre8
+    
+    loadn r2, #6 ;linha da madeira
+    cmp r1, r2
+    jeq Morre6
+    
+    loadn r2, #4 ;linha da madeira
+    cmp r1, r2
+    jeq Morre4
+    
+    jmp Continue
+    
+    Morre8:
+       load r3, posMadeira11
+       cmp r3, r0
+       jeq Continue
+       
+       load r3, posMadeira21
+       cmp r3, r0
+       jeq Continue
+       
+       load r3, posMadeira31
+       cmp r3, r0
+       jeq Continue
+       
+       jmp Fim
+    
+    Morre6:
+       load r3, posMadeira41
+       cmp r3, r0
+       jeq Continue
+       
+       jmp Fim
+       
+    Morre4:
+       load r3, posMadeira51
+       cmp r3, r0
+       jeq Continue
+       
+       load r3, posMadeira61
+       cmp r3, r0
+       jeq Continue
+       
+       jmp Fim
+    ;;;;;;;
+    
+    Continue:
     call Delay
     jmp loop
     
@@ -1265,6 +1322,26 @@ MoveMadeira_semFormiga1:
   push r1
   push r2
   
+  ;;;;;;
+  ;load r0, posMadeira11
+  ;load r1, posFormigaC
+  ;dec r0
+  ;cmp r0, r1
+  ;jeq Formiga_Afoga
+  ;load r0, posMadeira11
+  ;inc r0
+  ;cmp r0, r1
+  ;jeq Formiga_Afoga
+  
+  ;jmp Atuliza_Morreu
+  ;Formiga_Afoga:
+  ;pop r2
+  ;pop r1
+  ;pop r0
+  ;  halt
+  ;;;;;;
+
+;Atuliza_Morreu:
   load r0, posMadeira11
   inc r0
   loadn r2, #359
@@ -2488,7 +2565,7 @@ Apaga_Formiga_Madeira6:
   static Fundo + #17, #2577
   static Fundo + #18, #2577
   static Fundo + #19, #2577
-  static Fundo + #20, #2577
+  static Fundo + #20, #65
   static Fundo + #21, #2577
   static Fundo + #22, #2577
   static Fundo + #23, #2577
