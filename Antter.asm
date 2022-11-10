@@ -1232,7 +1232,7 @@ Apaga_Carro8:
   pop r0
   rts
   
-;---- Maderas-----
+;---- Madeiras-----
 
 Move_Madeira1:
   call Apaga_Madeira1
@@ -1253,13 +1253,13 @@ Desenha_Madeira1:
   cmp r3,r0
   jeq Final_Desenha_Madeira1
   
-  loadn r1, #15
-  loadn r2, #2816
+  loadn r1, #15   ;sprite da madeira
+  loadn r2, #2816 ;cor da madeira (amarelo [??????])
   add r1, r1, r2
   outchar r1, r0
   store posMadeira11_Anterior, r0
   
-  ;parte de baixo de carro
+  ;parte de baixo da madeira (repeteco)
   load r0, posMadeira12
   outchar r1, r0
   store posMadeira12_Anterior, r0
@@ -1283,12 +1283,12 @@ Apaga_Madeira1:
   
   load r1, posMadeira11_Anterior
   add r2, r1, r0
-  loadi r5, r2
+  loadi r5, r2    ;reconstroi o fundo desamadeirado
   outchar r5, r1
   
   load r1, posMadeira12_Anterior
   add r2, r1, r0
-  loadi r5, r2
+  loadi r5, r2    ;msm coisa (parte de baixo)
   outchar r5, r1
   
   pop r5
@@ -1322,26 +1322,6 @@ MoveMadeira_semFormiga1:
   push r1
   push r2
   
-  ;;;;;;
-  ;load r0, posMadeira11
-  ;load r1, posFormigaC
-  ;dec r0
-  ;cmp r0, r1
-  ;jeq Formiga_Afoga
-  ;load r0, posMadeira11
-  ;inc r0
-  ;cmp r0, r1
-  ;jeq Formiga_Afoga
-  
-  ;jmp Atuliza_Morreu
-  ;Formiga_Afoga:
-  ;pop r2
-  ;pop r1
-  ;pop r0
-  ;  halt
-  ;;;;;;
-
-;Atuliza_Morreu:
   load r0, posMadeira11
   inc r0
   loadn r2, #359
@@ -2540,8 +2520,8 @@ Apaga_Formiga_Madeira6:
   pop r0
   rts
 
-
-
+;__xXx--=TURNO_DE_VOLTA=--xXx__
+  
 ;---- Tela Fundo -----
 
   ;Linha 0
