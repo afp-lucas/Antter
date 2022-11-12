@@ -99,6 +99,11 @@ posMadeira61_Anterior: var #1
 posMadeira62: var #1
 posMadeira62_Anterior: var #1
 
+posMadeira71: var #1
+posMadeira71_Anterior: var #1
+posMadeira72: var #1
+posMadeira72_Anterior: var #1
+
 ;---- Inicio do Programa Principal -----
 
 main:
@@ -225,6 +230,14 @@ main:
   store posMadeira62, r0
   store posMadeira62_Anterior, r0
   
+  loadn r0, #346
+  store posMadeira71, r0
+  store posMadeira71_Anterior, r0
+  
+  loadn r0, #387
+  store posMadeira72, r0
+  store posMadeira72_Anterior, r0
+  
   
   loop:
     call MoveFormiga
@@ -239,6 +252,7 @@ main:
     call Move_Madeira1
     call Move_Madeira2
     call Move_Madeira3
+    call Move_Madeira7
     call Move_Madeira4
     call Move_Madeira5
     call Move_Madeira6
@@ -2492,6 +2506,220 @@ Desenha_Formiga_Madeira6:
   rts
 
 Apaga_Formiga_Madeira6:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  loadn r3, #40
+  
+  load r1, posFormigaAnteriorC
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  load r1, posFormigaAnteriorB
+  add r2, r1, r0
+  loadi r5, r2
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+  
+Move_Madeira7:
+  call Apaga_Madeira7
+  call Desenha_Madeira7
+  call Atualiza_Madeira7
+  
+  rts
+
+Desenha_Madeira7:
+  push r0
+  push r1
+  push r2
+  push r3
+  
+  load r3, posFormigaC
+  load r0, posMadeira71
+  
+  cmp r3,r0
+  jeq Final_Desenha_Madeira7
+  
+  loadn r1, #15   ;sprite da madeira
+  loadn r2, #2816 ;cor da madeira (amarelo [??????])
+  add r1, r1, r2
+  outchar r1, r0
+  store posMadeira71_Anterior, r0
+  
+  ;parte de baixo da madeira (repeteco)
+  load r0, posMadeira72
+  outchar r1, r0
+  store posMadeira72_Anterior, r0
+  
+  Final_Desenha_Madeira7:
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Apaga_Madeira7:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  loadn r0, #Fundo
+  
+  load r1, posMadeira71_Anterior
+  add r2, r1, r0
+  loadi r5, r2    ;reconstroi o fundo desamadeirado
+  outchar r5, r1
+  
+  load r1, posMadeira72_Anterior
+  add r2, r1, r0
+  loadi r5, r2    ;msm coisa (parte de baixo)
+  outchar r5, r1
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  rts
+
+Atualiza_Madeira7:
+  push r0
+  push r1
+  
+  load r0, posFormigaC
+  load r1, posMadeira71
+  cmp r0, r1
+  jne MoveMadeira_semFormiga7
+  
+  cmp r0, r1
+  jeq Move_FormigaeMadeira7
+  
+  Fim_Atualiza_Madeira7:
+  pop r1
+  pop r0
+  rts
+  
+  
+MoveMadeira_semFormiga7:
+  push r0
+  push r1
+  push r2
+  
+  load r0, posMadeira71
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq Madeira_Fim7
+  
+  store posMadeira71, r0
+  load r0, posMadeira72
+  inc r0
+  store posMadeira72, r0
+  jmp Atuliza_Fim_Madeira7
+  
+  Madeira_Fim7:
+    loadn r2, #320
+    store posMadeira71, r2
+    loadn r2, #360
+    store posMadeira72, r2
+    jmp Atuliza_Fim_Madeira7
+  
+  Atuliza_Fim_Madeira7:
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira7
+
+Move_FormigaeMadeira7:
+  push r0
+  push r1
+  push r2
+  push r3
+  push r4
+  push r5
+  
+  load r0, posMadeira71
+  inc r0
+  loadn r2, #359
+  cmp r0, r2
+  jeq MadeiraF_Fim7
+  
+  store posMadeira71, r0
+  store posFormigaC, r0
+  
+  load r0, posMadeira72
+  inc r0
+  store posMadeira72, r0
+  store posFormigaB, r0
+  call Apaga_Formiga_Madeira7
+  call Desenha_Formiga_Madeira7
+  
+  jmp Atuliza_Fim_MadeiraF7
+  
+  MadeiraF_Fim7:
+    loadn r2, #320
+    store posMadeira71, r2
+    store posFormigaC, r2
+    
+    loadn r2, #360
+    store posMadeira72, r2
+    store posFormigaB, r2
+    jmp Atuliza_Fim_MadeiraF7
+  
+  Atuliza_Fim_MadeiraF7:
+  
+  pop r5
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  pop r0
+  jmp Fim_Atualiza_Madeira7
+
+Desenha_Formiga_Madeira7:
+  push r1
+  push r2
+  push r3
+  push r4
+  
+  loadn r4, #256
+  
+  load r1, posFormigaC
+  loadn r3, #8
+  add r3, r3, r4
+  outchar r3, r1
+  store posFormigaAnteriorC, r1
+  
+  load r2, posFormigaB
+  loadn r3, #9
+  add r3, r3, r4
+  outchar r3, r2
+  store posFormigaAnteriorB, r2
+  
+  pop r4
+  pop r3
+  pop r2
+  pop r1
+  rts
+
+Apaga_Formiga_Madeira7:
   push r0
   push r1
   push r2
