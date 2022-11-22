@@ -19,17 +19,26 @@
 ; 3584 aqua             1110 0000
 ; 3840 branco           1111 0000
 
-;ANTTER
+;********************************************************
+;                        ANTTER
+;********************************************************
 
-jmp main
 
-Fundo: var #1200
-posFormigaC: var #1
-posFormigaAnteriorC: var #1
-posFormigaB: var #1
-posFormigaAnteriorB: var #1
+jmp main 
 
-posCarro11: var #1
+Fundo: var #1200                 ; declaracao da variavel do fundo
+posFormigaC: var #1              ; declaracao da variavel da posicao da cabeca da formiga
+posFormigaAnteriorC: var #1      ; declaracao da variavel da posicao anterior da cabeca da formiga
+posFormigaB: var #1              ; declaracao da variavel da posicao da bunda da formiga
+posFormigaAnteriorB: var #1      ; declaracao da variavel da posicao anterior da bunda da formiga
+
+; declaracao das variaveis da posicao dos carros, no seguinte formato:
+;   posicao da parte superior do carro
+;   posicao anterior da parte superior do carro
+;   posicao da parte inferior do carro
+;   posicao anterior da parte inferior do carro
+
+posCarro11: var #1              
 posCarro11_Anterior: var #1
 posCarro12: var #1
 posCarro12_Anterior: var #1
@@ -68,6 +77,12 @@ posCarro81: var #1
 posCarro81_Anterior: var #1
 posCarro82: var #1
 posCarro82_Anterior: var #1
+
+; declaracao das variaveis da posicao dos troncos, no seguinte formato:
+;   posicao da parte superior do tronco
+;   posicao anterior da parte superior do tronco
+;   posicao da parte inferior do tronco
+;   posicao anterior da parte inferior do tronco
 
 posMadeira11: var #1
 posMadeira11_Anterior: var #1
@@ -108,17 +123,22 @@ posMadeira72_Anterior: var #1
 
 main:
 
+  ;call fundo inicial
+  ;Inicio_Jogo:       ; label para não mostrar tela inicial toda vez
+  
   call printFundoScreen
 
-  loadn r0, #1180
+  loadn r0, #1180                 ; inicializar as variaveis posFormigaB e posFormigaAnteriorB com a posicao inicial da bunda da formiga 
   store posFormigaB, r0
   store posFormigaAnteriorB, r0
 
-  loadn r0, #1140
+  loadn r0, #1140                 ; inicializar as variaveis posFormigaC e posFormigaAnteriorC com a posicao inicial da cabeca da formiga
   store posFormigaC, r0
   store posFormigaAnteriorC, r0
   
-  loadn r0, #480
+  ; inicializar as variaveis posCarroXY e posCarroXY_Anterior com a posicao inicial das partes superior(XY) e inferior(X(Y+1)) dos carros
+  
+  loadn r0, #480                  
   store posCarro11, r0
   store posCarro11_Anterior, r0
   
@@ -182,6 +202,8 @@ main:
   store posCarro82, r0
   store posCarro82_Anterior, r0
   
+   ; inicializar as variaveis posMadeiraXY e posMadeiraXY_Anterior com a posicao inicial das partes superior(XY) e inferior(X(Y+1)) dos troncos
+   
   loadn r0, #320
   store posMadeira11, r0
   store posMadeira11_Anterior, r0
@@ -230,16 +252,9 @@ main:
   store posMadeira62, r0
   store posMadeira62_Anterior, r0
   
-  loadn r0, #346
-  store posMadeira71, r0
-  store posMadeira71_Anterior, r0
-  
-  loadn r0, #387
-  store posMadeira72, r0
-  store posMadeira72_Anterior, r0
-  
-  
   loop:
+  
+  ; chamar todas as rotinas 
     call MoveFormiga
     call Move_Carro1
     call Move_Carro2
@@ -252,16 +267,19 @@ main:
     call Move_Madeira1
     call Move_Madeira2
     call Move_Madeira3
-    call Move_Madeira7
     call Move_Madeira4
     call Move_Madeira5
     call Move_Madeira6
     
-    load r0, posFormigaC
+    load r0, posFormigaC          ; coloca a posicao da formiga no r0
     
-    load r1, posCarro11
-    cmp r1, r0
-    jeq Fim
+    ; coloca a posicao da parte superior do carroX no r1
+    ; compara a posicao do carro com a posicao da formiga
+    ; se igual, vai para a funcao Fim
+    
+    load r1, posCarro11           
+    cmp r1, r0                    
+    jeq Fim                       
     
     load r1, posCarro21
     cmp r1, r0
@@ -291,28 +309,34 @@ main:
     cmp r1, r0
     jeq Fim
     
-    loadn r1, #20
+    loadn r1, #20                 ;compara a posicao da formiga com a posicao da maça para verificar se a formiga ganhou
     cmp r1, r0
-    jeq Fim
+    jeq Fim                       ;se igual, vai para a funcao Fim
+    ;jeq Ganhou
     
-    ;;;;;;;
-    loadn r2, #40
-    div r1, r0, r2 ;numero de linha da formiga
+    ;Formiga Afoga:
     
-    loadn r2, #8 ;linha da madeira
-    cmp r1, r2
-    jeq Morre8
+    loadn r2, #40                 ; 40 eh o numero de caracteres por linha
+    div r1, r0, r2                ; divide a posicao da cabeca da formiga por 40 para descobrir o numero de linha da formiga
     
-    loadn r2, #6 ;linha da madeira
-    cmp r1, r2
-    jeq Morre6
+    loadn r2, #8                  ; linha da primeira fila de madeira
+    cmp r1, r2                    ; compara a linha da formiga com a linha da madeira
+    jeq Morre8                    ; se igual, formiga vai pra funcao Morre8
     
-    loadn r2, #4 ;linha da madeira
-    cmp r1, r2
-    jeq Morre4
+    loadn r2, #6                  ; linha da primeira fila de madeira
+    cmp r1, r2                    ; compara a linha da formiga com a linha da madeira
+    jeq Morre6                    ; se igual, formiga vai pra funcao Morre6
     
-    jmp Continue
+    loadn r2, #4                  ; linha da primeira fila de madeira
+    cmp r1, r2                    ; compara a linha da formiga com a linha da madeira
+    jeq Morre4                    ; se igual, formiga vai pra funcao Morre4
     
+    jmp Continue                  ; se a formiga nao estiver em nenhuma dessas linhas, vai para a funcao Continue
+    
+    ; FUNCOES MORRE 8, 6 E 4:
+    ; coloca a posicao da madeira no r3, compara a posicao da madeira com a posicao da formiga
+    ; se as posicoes forem iguais, continua igual
+    ; se a posicao da formiga for diferente de todas as posicoes das madeiras na linha, a formiga afoga e chama a funcao Fi
     Morre8:
        load r3, posMadeira11
        cmp r3, r0
@@ -345,14 +369,31 @@ main:
        jeq Continue
        
        jmp Fim
-    ;;;;;;;
-    
+;   ------------------------------   ;
+    ; chama o delay e continua o loop
     Continue:
     call Delay
     jmp loop
     
   Fim:
+    ;call fundo perde
+    ;loadn r0, 'caracter'
+    ;loadn r1, #poscição tela
+    ;outchar r0, r1
+    ;call delay
+    
+    ;Verificar_JogarDeNovo
+    ;loadn r0, ' ' ;espaço
+    ;inchar r1
+    ;cmp r0,r1
+    ;jeq main ou inicio
+    ;jmp Verificar_JogarDeNovo
+
     halt
+  
+  ;Ganhou:
+    ;call fundo ganhou
+    ;call Verificar_JogarDeNovo
   
 ;---- Fim do Programa Principal -----
 
@@ -366,12 +407,12 @@ main:
 MoveFormiga:
   push r1
   push r2
-  call Atualiza_Formiga
+  call Atualiza_Formiga           ; chama a funcao Atualiza_Formiga para atualizar a posicao da formiga
   
-  load r1, posFormigaC
+  load r1, posFormigaC            ; coloca nos registradores r1 e r2 as posicoes da cabeca e bunda da formiga
   load r2, posFormigaB
   
-  call Formiga_Apaga
+  call Formiga_Apaga              ; chama as funcoes apaga e desenha para apagar as formigas da posicao e redesenha-las na proxima
   call Formiga_Desenha
   
   
@@ -387,30 +428,30 @@ Atualiza_Formiga:
   push r3
   push r4
   
-  load r0, posFormigaC
+  load r0, posFormigaC            ; coloca nos registradores r0 e r4 as posicoes da cabeca e bunda da formiga
   load r4, posFormigaB
 
-  inchar r1
+  inchar r1                       ; le o input do teclado
 
-  loadn r2, #'a'
+  loadn r2, #'a'                  ; coloca o 'a' no r2 e compara com o input do teclado, se igual, vai para a funcao MoveFormiga_RecalculaPos_A
   cmp r1, r2
   jeq MoveFormiga_RecalculaPos_A
 
-  loadn r2, #'d'
+  loadn r2, #'d'                  ; coloca o 'd' no r2 e compara com o input do teclado, se igual, vai para a funcao MoveFormiga_RecalculaPos_D
   cmp r1, r2
   jeq MoveFormiga_RecalculaPos_D
 
-  loadn r2, #'w'
+  loadn r2, #'w'                  ; coloca o 'w' no r2 e compara com o input do teclado, se igual, vai para a funcao MoveFormiga_RecalculaPos_W
   cmp r1, r2
   jeq MoveFormiga_RecalculaPos_W
 
-  loadn r2, #'s'
+  loadn r2, #'s'                  ; coloca o 's' no r2 e compara com o input do teclado, se igual, vai para a funcao MoveFormiga_RecalculaPos_S
   cmp r1, r2
   jeq MoveFormiga_RecalculaPos_S
 
 MoveFormiga_Fim: 
 
-  store posFormigaC, r0
+  store posFormigaC, r0           ; muda a posicao da formiga(cabeca e bunda) com os valores do r0 e r4
   store posFormigaB, r4 
 
   pop r4
@@ -421,67 +462,68 @@ MoveFormiga_Fim:
   rts
 
 MoveFormiga_RecalculaPos_A:
-  loadn r1, #40
-  loadn r2, #0
-  mod r1, r0, r1
-  cmp r1, r2
-  jeq MoveFormiga_Fim
+  loadn r1, #40                   ; guarda 40 no r1
+  loadn r2, #0                    ; guarda 0 no r2
+  mod r1, r0, r1                  ; calcula modulo entre a posicao da formiga e 40, para achar a pocisao dela na linha
+  cmp r1, r2                      ; compara para ver se a formiga nao esta no canto esquerdo da tela
+  jeq MoveFormiga_Fim             ; se esta no canto esquerdo vai para Moveformiga_fim 
 
-  dec r0
-  dec r4
-  jmp MoveFormiga_Fim
+  dec r0                          ; decrementa posicao da cabeca e da bunda da formiga para ela ir para a esquerda
+  dec r4                          
+  jmp MoveFormiga_Fim             ; vai para moveformiga_fim
   
 MoveFormiga_RecalculaPos_D:
-  loadn r1, #40
-  loadn r2, #39
-  mod r1, r0, r1
-  cmp r1, r2
-  jeq MoveFormiga_Fim
+  loadn r1, #40                  ; guarda 40 no r1
+  loadn r2, #39                  ; guarda 39 no r2
+  mod r1, r0, r1                 ; calcula modulo entre a posicao da formiga e 40, para achar a pocisao dela na linha
+  cmp r1, r2                     ; compara para ver se a formiga nao esta no canto direito da tela
+  jeq MoveFormiga_Fim            ; vai para moveformiga_fim
 
-  inc r0
+  inc r0                         ; incrementa posicao da cabeca e da bunda da formiga para ela ir para a direita
   inc r4
-  jmp MoveFormiga_Fim
+  jmp MoveFormiga_Fim            ; vai para moveformiga_fim
 
 MoveFormiga_RecalculaPos_W:
-  loadn r1, #40
-  cmp r0, r1
-  jle MoveFormiga_Fim
+  loadn r1, #40                  ; guarda 40 no r1
+  cmp r0, r1                     ; compara posicao da formiga com 40 para ver se ela esta no topo da tela
+  jle MoveFormiga_Fim            ; vai para moveformiga_fim
 
-  sub r0, r0, r1
-  sub r4, r4, r1
-  sub r0, r0, r1
-  sub r4, r4, r1
+  sub r0, r0, r1                 ; subtrai a posicao da cabeca e bunda por 40 duas vezes para mover a formiga para cima, 2 linhas
+  sub r4, r4, r1                 
+  sub r0, r0, r1                
+  sub r4, r4, r1                 
   
-  jmp MoveFormiga_Fim
+  jmp MoveFormiga_Fim            ; vai para moveformiga_fim
 
 MoveFormiga_RecalculaPos_S:
-  loadn r1, #1159
-  cmp r0, r1
-  jgr MoveFormiga_Fim
+  loadn r1, #1159                ; guarda 1159 no r1
+  cmp r0, r1                     ; compara posicao da formiga com 1159 para ver se ela esta na parte de baixo da tela
+  jgr MoveFormiga_Fim            ; vai para moveformiga_fim
 
-  loadn r1, #40
-  add r0, r0, r1
+  loadn r1, #40                  ; guarda 40 no r1
+  
+  add r0, r0, r1                 ; adiciona a posicao da cabeca e bunda por 40 duas vezes para mover a formiga para baixo, 2 linhas
   add r4, r4, r1
   add r0, r0, r1
   add r4, r4, r1
   
-  jmp MoveFormiga_Fim
+  jmp MoveFormiga_Fim            ; vai para moveformiga_fim
   
 Formiga_Desenha:
   push r3
   push r4
   
-  loadn r4, #256
+  loadn r4, #256                 ; guarda 256 no r4 para cor da formiga
   
-  loadn r3, #8
-  add r3, r3, r4
-  outchar r3, r1
-  store posFormigaAnteriorC, r1
+  loadn r3, #8                   ; guarda 8 no r3 para o caracter da cabeca da formiga
+  add r3, r3, r4                 ; adiciona os dois para colorir a cabeca
+  outchar r3, r1                 ; print da cabeca na posicao salva em r1
+  store posFormigaAnteriorC, r1  ; salva a posicao anterior da cabeca
   
-  loadn r3, #9
-  add r3, r3, r4
-  outchar r3, r2
-  store posFormigaAnteriorB, r2
+  loadn r3, #9                   ; guarda 9 no r3 para o caracter da bunda da formiga
+  add r3, r3, r4                 ; adiciona os dois para colorir a bunda
+  outchar r3, r2                 ; print da bunda na posicao salva em r2
+  store posFormigaAnteriorB, r2  ; salva a posicao anterior da bunda
   
   pop r4
   pop r3
@@ -495,18 +537,18 @@ Formiga_Apaga:
   push r4
   push r5
   
-  loadn r0, #Fundo
-  loadn r3, #40
+  loadn r0, #Fundo              ; guarda o fundo em r0
+  loadn r3, #40                 ; guarda 40 em r3
   
-  load r1, posFormigaAnteriorC
-  add r2, r1, r0
-  loadi r5, r2
-  outchar r5, r1
+  load r1, posFormigaAnteriorC  ; guarda a posicao anterior da cabeca em r1
+  add r2, r1, r0                ; soma a posicao da formiga com o fundo para achar a posicao do fundo a ser desenhada
+  loadi r5, r2                  ; coloca a direcao do r2, com o fundo, no r5
+  outchar r5, r1                ; print do fundo por cima da formiga
   
-  load r1, posFormigaAnteriorB
-  add r2, r1, r0
-  loadi r5, r2
-  outchar r5, r1
+  load r1, posFormigaAnteriorB  ; guarda a posicao anterior da bunda em r1
+  add r2, r1, r0                ; soma a posicao da formiga com o fundo para achar a posicao do fundo a ser desenhada
+  loadi r5, r2                  ; coloca a direcao do r2, com o fundo, no r5
+  outchar r5, r1                ; print do fundo por cima da formiga
   
   pop r5
   pop r4
@@ -522,16 +564,16 @@ Delay:
   push r0
   push r1
 
-  loadn r1, #15
+  loadn r1, #15                ; guarda 15 no r1
 
-  Delay_Volta2:
-    loadn r0, #3000
+  Delay_Volta2:                ; loop que acontecera 15 vezes para causar o delay
+    loadn r0, #3000            ; guarda 3000 no r0
 
-  Delay_Volta1:
-    dec r0
-    jnz Delay_Volta1
-    dec r1
-    jnz Delay_Volta2
+  Delay_Volta1:                ; loop que acontecera 3000 vezes antes de repetir o delay_volta2 e tambem ocorrera 15 vezes 
+    dec r0                     ; decrementa r0
+    jnz Delay_Volta1           ; refaz o loop ate r0 ser igual a 0
+    dec r1                     ; decrementa r1
+    jnz Delay_Volta2           ; refaz o loop ate r1 ser igual a 0
   
   pop r1
   pop r2
@@ -539,37 +581,41 @@ Delay:
   rts
   
 ;---- Carros -----
+;Funcao move_carro:
+;chama funcoes para apagar, redesenhar e atualizar as pocicoes dos carros
+
+
 Move_Carro1:
 
   call Apaga_Carro1
   call Desenha_Carro1
-  call Atualisa_Carro_Direita1
+  call Atualiza_Carro_Direita1
 
   rts
 
-Atualisa_Carro_Direita1:
+Atualiza_Carro_Direita1:       
   push r0
   push r1
   push r2
   
-  load r0, posCarro11
-  inc r0
+  load r0, posCarro11           ; guarda posicao do carroX em r0
+  inc r0                        ; incrementa posicao do carroX para move-lo a direita 
   ;loadn r1, #40
-  loadn r2, #520
-  cmp r0, r2
-  jeq Carro_Fim1
+  loadn r2, #520                ; guarda 520 no r2 
+  cmp r0, r2                    ; compara posicao do carroX com r2 para ver se chegou ao fim da linha
+  jeq Carro_Fim1                ; se igual pula para carro_fimX
   
-  store posCarro11, r0
-  load r0, posCarro12
-  inc r0
-  store posCarro12, r0
-  jmp Atuliza_Fim1
+  store posCarro11, r0          ; guarda a posicao de r0 na posicao do carroX
+  load r0, posCarro12           ; guarda a posicao inferior do carroX no r0 
+  inc r0                        ; incrementa o r0 para mover o carro para a direita
+  store posCarro12, r0          ; guarda a nova posicao inferior do carro no posCarroX
+  jmp Atuliza_Fim1              ; se igual pula para Atualiza_fimX
   
   Carro_Fim1:
-    loadn r2, #480
-    store posCarro11, r2
-    loadn r2, #520
-    store posCarro12, r2
+    loadn r2, #480              ; guarda em r2 a posicao do inicio da linha
+    store posCarro11, r2        ; muda a posicao superior do carro para a posicao salva em r2
+    loadn r2, #520              ; guarda em r2 a posicao do inicio da linha
+    store posCarro12, r2        ; muda a posicao inferior do carro para a posicao salva em r2
     jmp Atuliza_Fim1
   
   Atuliza_Fim1:
@@ -583,10 +629,10 @@ Desenha_Carro1:
   push r1
   push r2
   
-  load r0, posCarro11
-  loadn r1, #'x'
-  outchar r1, r0
-  store posCarro11_Anterior, r0
+  load r0, posCarro11            ; guarda a posicao do carro em r0
+  loadn r1, #'x'                 ; guarda o caracter da parte superior do carro em r1
+  outchar r1, r0                 ; imprime o caracter da superior do carro na posicao do carro
+  store posCarro11_Anterior, r0  ; salva a posicao atual como posicao anterior
   
   ;parte de baixo de carro
   load r0, posCarro12
@@ -607,12 +653,14 @@ Apaga_Carro1:
   push r4
   push r5
   
-  loadn r0, #Fundo
+  loadn r0, #Fundo               ; guarda em r0 a posicao do fundo
   
-  load r1, posCarro11_Anterior
-  add r2, r1, r0
-  loadi r5, r2
-  outchar r5, r1
+  load r1, posCarro11_Anterior   ; guarda em r1 a posicao anterior da parte superior do carro
+  add r2, r1, r0                 ; r2 = r1 + r0
+  loadi r5, r2                   ; guarda em r5 o conteudo de r2
+  outchar r5, r1                 ; imprime o caracter de r5 na posicao anterior da parte superior do carro
+  
+  ; o mesmo para a parte inferior do carro
   
   load r1, posCarro12_Anterior
   add r2, r1, r0
@@ -631,11 +679,11 @@ Apaga_Carro1:
 Move_Carro2:
  call Apaga_Carro2
  call Desenha_Carro2
- call Atualisa_Carro_Esq2
+ call Atualiza_Carro_Esq2
 
  rts
 
-Atualisa_Carro_Esq2:
+Atualiza_Carro_Esq2:
   push r0
   push r1
   push r2
@@ -721,11 +769,11 @@ Apaga_Carro2:
 Move_Carro3:
  call Apaga_Carro3
  call Desenha_Carro3
- call Atualisa_Carro_Esq3
+ call Atualiza_Carro_Esq3
 
  rts
 
-Atualisa_Carro_Esq3:
+Atualiza_Carro_Esq3:
   push r0
   push r1
   push r2
@@ -811,11 +859,11 @@ Apaga_Carro3:
 
   call Apaga_Carro4
   call Desenha_Carro4
-  call Atualisa_Carro_Direita4
+  call Atualiza_Carro_Direita4
 
   rts
 
-Atualisa_Carro_Direita4:
+Atualiza_Carro_Direita4:
   push r0
   push r1
   push r2
@@ -898,11 +946,11 @@ Apaga_Carro4:
 Move_Carro5:
  call Apaga_Carro5
  call Desenha_Carro5
- call Atualisa_Carro_Esq5
+ call Atualiza_Carro_Esq5
 
  rts
 
-Atualisa_Carro_Esq5:
+Atualiza_Carro_Esq5:
   push r0
   push r1
   push r2
@@ -987,11 +1035,11 @@ Apaga_Carro5:
 
   call Apaga_Carro6
   call Desenha_Carro6
-  call Atualisa_Carro_Direita6
+  call Atualiza_Carro_Direita6
 
   rts
 
-Atualisa_Carro_Direita6:
+Atualiza_Carro_Direita6:
   push r0
   push r1
   push r2
@@ -1075,11 +1123,11 @@ Move_Carro7:
 
   call Apaga_Carro7
   call Desenha_Carro7
-  call Atualisa_Carro_Direita7
+  call Atualiza_Carro_Direita7
 
   rts
 
-Atualisa_Carro_Direita7:
+Atualiza_Carro_Direita7:
   push r0
   push r1
   push r2
@@ -1162,11 +1210,11 @@ Apaga_Carro7:
 Move_Carro8:
  call Apaga_Carro8
  call Desenha_Carro8
- call Atualisa_Carro_Esq8
+ call Atualiza_Carro_Esq8
 
  rts
 
-Atualisa_Carro_Esq8:
+Atualiza_Carro_Esq8:
   push r0
   push r1
   push r2
@@ -1248,6 +1296,9 @@ Apaga_Carro8:
   
 ;---- Madeiras-----
 
+
+; o movimento das madeiras eh igual ao movimento dos carros, comentarios na parte carros
+
 Move_Madeira1:
   call Apaga_Madeira1
   call Desenha_Madeira1
@@ -1261,19 +1312,19 @@ Desenha_Madeira1:
   push r2
   push r3
   
-  load r3, posFormigaC
+  load r3, posFormigaC 
   load r0, posMadeira11
   
   cmp r3,r0
   jeq Final_Desenha_Madeira1
   
   loadn r1, #15   ;sprite da madeira
-  loadn r2, #2816 ;cor da madeira (amarelo [??????])
+  loadn r2, #2816 ;cor da madeira 
   add r1, r1, r2
   outchar r1, r0
   store posMadeira11_Anterior, r0
   
-  ;parte de baixo da madeira (repeteco)
+  ;parte de baixo da madeira 
   load r0, posMadeira12
   outchar r1, r0
   store posMadeira12_Anterior, r0
@@ -1361,6 +1412,9 @@ MoveMadeira_semFormiga1:
   pop r0
   jmp Fim_Atualiza_Madeira1
 
+
+; Funcao para quando a formiga esta encima da madeira
+
 Move_FormigaeMadeira1:
   push r0
   push r1
@@ -1369,29 +1423,30 @@ Move_FormigaeMadeira1:
   push r4
   push r5
   
-  load r0, posMadeira11
-  inc r0
-  loadn r2, #359
-  cmp r0, r2
-  jeq MadeiraF_Fim1
+  load r0, posMadeira11              ; guarda a posicao superior da madeira em r0
+  inc r0                             ; incrementa r0 para mover a madeira para a direita.
+  loadn r2, #359                     ; guarda em r2 a posicao do final da linha
+  cmp r0, r2                         ; compara a posicao do final da linha com a posicao da madeira
+  jeq MadeiraF_Fim1                  ; se igual, pule pra funcao MadeiraF_Fim1
   
-  store posMadeira11, r0
-  store posFormigaC, r0
+  store posMadeira11, r0             ; salva o conteudo de r0 na posicao superior da madeiraX
+  store posFormigaC, r0              ; salva o conteudo de r0 na posicao da cabeca da formiga
   
-  load r0, posMadeira12
-  inc r0
-  store posMadeira12, r0
-  store posFormigaB, r0
+  load r0, posMadeira12              ; guarda a posicao inferior da madeira em r0
+  inc r0                             ; incrementa r0 para mover a madeira para a direita
+  store posMadeira12, r0             ; salva o conteudo de r0 na posicao inferior da madeiraX
+  store posFormigaB, r0              ; salva o conteudo de r0 na posicao da bunda da formiga
   call Apaga_Formiga_Madeira1
   call Desenha_Formiga_Madeira1
   
   jmp Atuliza_Fim_MadeiraF1
   
   MadeiraF_Fim1:
-    loadn r2, #320
-    store posMadeira11, r2
+    loadn r2, #320                   ; guarda o inicio da linha em r2
+    store posMadeira11, r2           ; salva na posicao superior da madeira e da formiga
     store posFormigaC, r2
     
+    ; o mesmo na parte inferior
     loadn r2, #360
     store posMadeira12, r2
     store posFormigaB, r2
@@ -1407,6 +1462,8 @@ Move_FormigaeMadeira1:
   pop r0
   jmp Fim_Atualiza_Madeira1
 
+
+;imprime a formiga ao inves da madeira quando estao na mesma posicao, igual a funcao desenha_formiga
 Desenha_Formiga_Madeira1:
   push r1
   push r2
@@ -1433,6 +1490,7 @@ Desenha_Formiga_Madeira1:
   pop r1
   rts
 
+;apaga a posicao da formiga + madeira e substitui pelo fundo, eh a mesma funcao que apaga_formiga
 Apaga_Formiga_Madeira1:
   push r0
   push r1
@@ -2534,220 +2592,6 @@ Apaga_Formiga_Madeira6:
   pop r0
   rts
   
-Move_Madeira7:
-  call Apaga_Madeira7
-  call Desenha_Madeira7
-  call Atualiza_Madeira7
-  
-  rts
-
-Desenha_Madeira7:
-  push r0
-  push r1
-  push r2
-  push r3
-  
-  load r3, posFormigaC
-  load r0, posMadeira71
-  
-  cmp r3,r0
-  jeq Final_Desenha_Madeira7
-  
-  loadn r1, #15   ;sprite da madeira
-  loadn r2, #2816 ;cor da madeira (amarelo [??????])
-  add r1, r1, r2
-  outchar r1, r0
-  store posMadeira71_Anterior, r0
-  
-  ;parte de baixo da madeira (repeteco)
-  load r0, posMadeira72
-  outchar r1, r0
-  store posMadeira72_Anterior, r0
-  
-  Final_Desenha_Madeira7:
-  pop r3
-  pop r2
-  pop r1
-  pop r0
-  rts
-
-Apaga_Madeira7:
-  push r0
-  push r1
-  push r2
-  push r3
-  push r4
-  push r5
-  
-  loadn r0, #Fundo
-  
-  load r1, posMadeira71_Anterior
-  add r2, r1, r0
-  loadi r5, r2    ;reconstroi o fundo desamadeirado
-  outchar r5, r1
-  
-  load r1, posMadeira72_Anterior
-  add r2, r1, r0
-  loadi r5, r2    ;msm coisa (parte de baixo)
-  outchar r5, r1
-  
-  pop r5
-  pop r4
-  pop r3
-  pop r2
-  pop r1
-  pop r0
-  rts
-
-Atualiza_Madeira7:
-  push r0
-  push r1
-  
-  load r0, posFormigaC
-  load r1, posMadeira71
-  cmp r0, r1
-  jne MoveMadeira_semFormiga7
-  
-  cmp r0, r1
-  jeq Move_FormigaeMadeira7
-  
-  Fim_Atualiza_Madeira7:
-  pop r1
-  pop r0
-  rts
-  
-  
-MoveMadeira_semFormiga7:
-  push r0
-  push r1
-  push r2
-  
-  load r0, posMadeira71
-  inc r0
-  loadn r2, #359
-  cmp r0, r2
-  jeq Madeira_Fim7
-  
-  store posMadeira71, r0
-  load r0, posMadeira72
-  inc r0
-  store posMadeira72, r0
-  jmp Atuliza_Fim_Madeira7
-  
-  Madeira_Fim7:
-    loadn r2, #320
-    store posMadeira71, r2
-    loadn r2, #360
-    store posMadeira72, r2
-    jmp Atuliza_Fim_Madeira7
-  
-  Atuliza_Fim_Madeira7:
-  pop r2
-  pop r1
-  pop r0
-  jmp Fim_Atualiza_Madeira7
-
-Move_FormigaeMadeira7:
-  push r0
-  push r1
-  push r2
-  push r3
-  push r4
-  push r5
-  
-  load r0, posMadeira71
-  inc r0
-  loadn r2, #359
-  cmp r0, r2
-  jeq MadeiraF_Fim7
-  
-  store posMadeira71, r0
-  store posFormigaC, r0
-  
-  load r0, posMadeira72
-  inc r0
-  store posMadeira72, r0
-  store posFormigaB, r0
-  call Apaga_Formiga_Madeira7
-  call Desenha_Formiga_Madeira7
-  
-  jmp Atuliza_Fim_MadeiraF7
-  
-  MadeiraF_Fim7:
-    loadn r2, #320
-    store posMadeira71, r2
-    store posFormigaC, r2
-    
-    loadn r2, #360
-    store posMadeira72, r2
-    store posFormigaB, r2
-    jmp Atuliza_Fim_MadeiraF7
-  
-  Atuliza_Fim_MadeiraF7:
-  
-  pop r5
-  pop r4
-  pop r3
-  pop r2
-  pop r1
-  pop r0
-  jmp Fim_Atualiza_Madeira7
-
-Desenha_Formiga_Madeira7:
-  push r1
-  push r2
-  push r3
-  push r4
-  
-  loadn r4, #256
-  
-  load r1, posFormigaC
-  loadn r3, #8
-  add r3, r3, r4
-  outchar r3, r1
-  store posFormigaAnteriorC, r1
-  
-  load r2, posFormigaB
-  loadn r3, #9
-  add r3, r3, r4
-  outchar r3, r2
-  store posFormigaAnteriorB, r2
-  
-  pop r4
-  pop r3
-  pop r2
-  pop r1
-  rts
-
-Apaga_Formiga_Madeira7:
-  push r0
-  push r1
-  push r2
-  push r3
-  push r4
-  push r5
-  
-  loadn r0, #Fundo
-  loadn r3, #40
-  
-  load r1, posFormigaAnteriorC
-  add r2, r1, r0
-  loadi r5, r2
-  outchar r5, r1
-  
-  load r1, posFormigaAnteriorB
-  add r2, r1, r0
-  loadi r5, r2
-  outchar r5, r1
-  
-  pop r5
-  pop r4
-  pop r3
-  pop r2
-  pop r1
-  pop r0
-  rts
-
 ;__xXx--=TURNO_DE_VOLTA=--xXx__
   
 ;---- Tela Fundo -----
