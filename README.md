@@ -15,7 +15,7 @@
 <h2>Como jogar</h2>
 <p align="center"> Para iniciar o jogo pressione a tecla espaço</p> 
 <p align="center"> Para mover a formiga use as teclas A, D, S e W. 'A' move a formiga para a esquerda, 'D' para a direita, 'S' para baixo e 'W'  para cima.</p>
-![alt text](https://st.depositphotos.com/1035886/53192/v/600/depositphotos_531924334-stock-illustration-wasd-keyboard-keys-used-in.jpg)
+![imagen](https://st.depositphotos.com/1035886/53192/v/600/depositphotos_531924334-stock-illustration-wasd-keyboard-keys-used-in.jpg)
 <p align="center"> O objetivo do jogo é chegar na folhinha sem morrer. Good luck!</p> 
 
 <h2>Vídeo do jogo</h2>
@@ -28,5 +28,5 @@ Faça o dowload do arquivo 'Simulador_Windows_Tudo_Pronto_Fácil (1).zip' no rep
 
 <h3>Linux</h3>
 Faça o download do arquivo 'Simulador_Linux.zip' no repositorio https://github.com/simoesusp/Processador-ICMC/tree/master/Install_Packages e siga as intruções. Para compilar o codigo é necessario fazer download do Makefile. Apos feito o download, abra o terminal e digite:
-`cd /../../../Antter`
-`make`
+  cd /../../../Antter
+  make
