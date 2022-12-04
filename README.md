@@ -14,8 +14,10 @@
 
 <h2>Como jogar</h2>
 <p align="center"> Para iniciar o jogo pressione a tecla espaço</p> 
-<p align="center"> Para mover a formiga use as teclas A, D, S e W. 'A' move a formiga para a esquerda, 'D' para a direita, 'S' para baixo e 'W'  para cima.</p>
-![imagen](https://st.depositphotos.com/1035886/53192/v/600/depositphotos_531924334-stock-illustration-wasd-keyboard-keys-used-in.jpg)
+<p align="center"> Para mover a formiga use as teclas W, A, S e D. 'W' move a formiga para cima, 'A' para a esquerda, 'S' para baixo e 'D' para a direita.</p>
+<p align="center"> 
+ <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048878061300490271/teclas.gif" height="400"/>
+</p>
 <p align="center"> O objetivo do jogo é chegar na folhinha sem morrer. Good luck!</p> 
 
 <h2>Vídeo do jogo</h2>
