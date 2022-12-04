@@ -16,7 +16,7 @@
                   <br>Lucas Pereira Franco de Almeida - nUSP: 12675020 </p>
 
 <h2>Descrição do Jogo</h2>
-<p align="center"> Inspirado no clássico 'Frogger', nosso arcade de ação coloca o jogador no lugar de uma formiga operária que, seguindo os clamores da rainha, sai em busca de comida para salvar seu formigueiro natal que, devido à pavimentação recente de seus arredores, teve suas rotas de alimento comprometidas. Para tal, ele deve atravessar a rua com a formiga sem ser atropelado e passar pelo rio subindo nos troncos para não se afogar. Chegando na folha, o usuário vence o jogo, otherwise ele perde. Será que você é capaz de fazer o formigueiro prosperar?</p> 
+<p align="center"> Inspirado no clássico 'Frogger', nosso arcade de ação coloca o jogador no lugar de uma formiga operária que, seguindo os clamores da rainha, sai em busca de comida para salvar seu formigueiro natal, o qual teve suas rotas de alimento comprometidas pela pavimentação recente de seus arredores. Para tal, ele deve atravessar a rua com a formiga sem ser atropelado e passar pelo rio subindo nos troncos para não se afogar. Chegando na folha, o usuário vence o jogo, otherwise ele perde. Será que você é capaz de fazer o formigueiro prosperar?</p> 
 
 <h2>Como jogar</h2>
 <p align="center"> Para iniciar o jogo pressione a tecla espaço.</p> 
