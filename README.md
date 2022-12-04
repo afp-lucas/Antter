@@ -1,6 +1,6 @@
 <hr>
 <p align="center"> 
- <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048902843165327441/antter.png" height="260"/>
+ <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048902843165327441/antter.png" height="210" width="1220"/>
 </p>
 <hr>
 
