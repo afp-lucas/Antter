@@ -1,6 +1,6 @@
 <hr>
 
-<a href="https://github.com/AngelaMunante/Antter">
+<a href="https://github.com/afp-lucas/Antter">
   <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048902843165327441/antter.png" align="center" alt="Antter" title="Antter">
 </a>
 
