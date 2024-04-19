@@ -1,7 +1,7 @@
 <hr>
 
 <a href="https://github.com/afp-lucas/Antter">
-  <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048902843165327441/antter.png" align="center" alt="Antter" title="Antter">
+  <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048902843165327441/antter.png?ex=662e1f65&is=661baa65&hm=2daa7e0cda7575cd2f7b387f57b59ea308d4a4f3f1a77bbdb68db4b9f1db0ada&" align="center" alt="Antter" title="Antter">
 </a>
 
 <hr>
@@ -22,7 +22,7 @@
 <p align="center"> Para iniciar o jogo pressione a tecla espaço.</p> 
 <p align="center"> Para mover a formiga use as teclas W, A, S e D. 'W' move a formiga para cima, 'A' para a esquerda, 'S' para baixo e 'D' para a direita.</p>
 <p align="center"> 
- <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048878061300490271/teclas.gif" height="200" width="200"/>
+ <img src="https://cdn.discordapp.com/attachments/738046223763898415/1048878061300490271/teclas.gif?ex=662e0851&is=661b9351&hm=93713b406ced96368c64eeb76424a78d3119ac25d85ce67b31d698a2cd3b0e3e&" height="200" width="200"/>
 </p>
 <p align="center"> O objetivo do jogo é chegar na folhinha sem morrer. Good luck!</p> 
 
